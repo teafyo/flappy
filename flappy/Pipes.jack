@@ -1,0 +1,62 @@
+//Pipes class is in charge of creating and moving pipes in the flappy bird game 
+class Pipes {
+    field int opening, x;
+    
+
+    method void setOpening(int start) {
+        //returns a random number from 0 to 63
+        let x = start;
+        do Random.rand();
+        //bottom buffer + buffer to middle of hole + random center of opening + 1 offset for rand
+        let opening = 32 + 48 + Random.randRange(95) + 1;
+        return;
+    }
+
+    constructor Pipes new(int start) {
+        do setOpening(start);
+        do draw();
+
+        return this;
+    }
+    method void draw() {
+        do Screen.setColor(true);
+        do Screen.drawRectangle(x, 0, (x + 20), (opening - 32));
+        do Screen.drawRectangle(x, (opening + 32), (x + 20), 255);   
+        return;
+
+    }
+    method void erase() {
+        do Screen.setColor(false);
+        do Screen.drawRectangle(x, 0, (x + 20), (opening - 32));
+        do Screen.drawRectangle(x, (opening + 32), (x + 20), 255);
+        return;
+    }
+
+    method void move() {
+        var boolean reset;
+        do erase();
+        let x = x - 2;
+        if (x < 2) {
+            do setOpening(480);
+            
+        }
+        do draw();
+
+        return;
+    }
+
+    method Array getOpening() {
+        var Array opening;
+        var int bottom, top;
+        let bottom = x - 46;
+        let top = x + 46;
+        let opening[0] = top;
+        let opening[1] = bottom;
+        return opening;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+}
