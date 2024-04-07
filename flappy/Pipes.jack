@@ -4,13 +4,13 @@ class Pipes {
     
     constructor Pipes new(int start) {
         let score = 0;
-        let x = start;
-        do setOpening();
+        do setOpening(start);
         do draw();
 
         return this;
     }
-    method void setOpening() {
+    method void setOpening(int start) {
+        let x = start;
         //set up random generation
         do Random.rand();
         //bottom buffer + buffer to middle of hole + random center of opening + 1 offset for rand
