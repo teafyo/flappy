@@ -1,6 +1,6 @@
 class FlappyGame {
 	field Flappy flappy; //flappy
-	field int score; // score, increments whenever a pipe touches
+	field int thisScore, lastScore; // score, increments whenever a pipe touches the left
 	field int flapBuffer; // buffers gravity for flap
 	field int flapRelease; // waits for the up arrow to be released before another flap
 	field int gravSpeed; // speed of gravity when not flapping
@@ -9,7 +9,7 @@ class FlappyGame {
 	constructor FlappyGame new() {
 		do Screen.clearScreen();
 		let flappy = Flappy.new(64, 128, 8, 4);
-		let score = 0;
+		let currentScore = 0;
 		let play = true;
 		return this;
 	}
@@ -17,11 +17,14 @@ class FlappyGame {
 	method void run() {
 		var char key;
 		var Pipes Pipe1, Pipe2, Pipe3;
+		//Arbitrary random start seed (for game to be truly random, this number would need to be randomly generated).
 		do Random.setSeed(2234);
+
+		//Initialize Pipes
 		let Pipe1 = Pipes.new(160);
 		let Pipe2 = Pipes.new(320);
 		let Pipe3 = Pipes.new(480);
-		let score = 0;
+
 		let flapBuffer = 0;
 		let flapRelease = 0;
 		let gravSpeed = 2;
@@ -31,6 +34,17 @@ class FlappyGame {
 			do Pipe1.move();
 			do Pipe2.move();
 			do Pipe3.move();
+
+			//Check for loss condition (does flappy touch a pipe?)
+			
+		
+			//Update score if appropriate
+			let thisScore = Pipe1.getScore() + Pipe2.getScore() + Pipe3.getScore();
+			if (thisScore = lastScore) {
+				do Output.moveCursor(34, 5);
+				do Output.printString("Score: ");	
+				do Output.printInt(thisScore();
+			}
 			let key = Keyboard.keyPressed();
 			
 			if ((key = 131) & (flapRelease = 0) & (flapBuffer < 1)) { //check if up arrow is pressed and has been released
@@ -43,7 +57,7 @@ class FlappyGame {
 			}
 			if (flapBuffer > 0) {
 				do flappy.flap();
-				let flapBuffer = flapBuffer	- 1;
+				let flapBuffer = flapBuffer - 1;
 			}
 			else {
 				do flappy.gravity(gravSpeed);
