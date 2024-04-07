@@ -65,7 +65,7 @@ class FlappyGame {
 				let gravSpeed = gravSpeed + 1;
 				}
 			}
-			if ((flappy.getBottom() > 234 )) {
+			if ((flappy.getY() > 242 )) {
 				let play = false;
 			}
 		}
