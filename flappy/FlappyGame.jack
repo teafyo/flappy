@@ -9,7 +9,8 @@ class FlappyGame {
 	constructor FlappyGame new() {
 		do Screen.clearScreen();
 		let flappy = Flappy.new(64, 128, 8, 4);
-		let currentScore = 0;
+		let lastScore = -1;
+		let thisScore = 0
 		let play = true;
 		return this;
 	}
@@ -40,10 +41,11 @@ class FlappyGame {
 		
 			//Update score if appropriate
 			let thisScore = Pipe1.getScore() + Pipe2.getScore() + Pipe3.getScore();
-			if (thisScore = lastScore) {
+			if (thisScore > lastScore) {
 				do Output.moveCursor(34, 5);
 				do Output.printString("Score: ");	
-				do Output.printInt(thisScore();
+				do Output.printInt(thisScore);
+				let lastScore = thisScore;
 			}
 			let key = Keyboard.keyPressed();
 			
