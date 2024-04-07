@@ -48,6 +48,9 @@ class Pipes {
         return;
     }
 
+    method int getScore() {
+        return score;
+    }
 
     method int getOpeningTop() {
         var int top;
