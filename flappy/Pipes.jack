@@ -5,16 +5,17 @@ class Pipes {
     constructor Pipes new(int start) {
         let score = 0;
         let x = start;
-        do setOpening(start);
+        do setOpening();
         do draw();
 
         return this;
     }
     method void setOpening() {
-        //sets openign to a random number from 81 to 176
+        //set up random generation
         do Random.rand();
         //bottom buffer + buffer to middle of hole + random center of opening + 1 offset for rand
         let opening = 32 + 48 + Random.randRange(95) + 1;
+        
         return;
     }
 
@@ -22,6 +23,7 @@ class Pipes {
         do Screen.setColor(true);
         do Screen.drawRectangle(x, 0, (x + 20), (opening - 32));
         do Screen.drawRectangle(x, (opening + 32), (x + 20), 255);   
+    
         return;
 
     }
@@ -29,6 +31,7 @@ class Pipes {
         do Screen.setColor(false);
         do Screen.drawRectangle(x, 0, (x + 20), (opening - 32));
         do Screen.drawRectangle(x, (opening + 32), (x + 20), 255);
+        
         return;
     }
 
@@ -41,22 +44,28 @@ class Pipes {
             let score = score + 1;
         }
         do draw();
-
+        
         return;
     }
 
-    method Array getOpening() {
-        var Array opening;
-        var int bottom, top;
-        let bottom = x - 46;
+
+    method int getOpeningTop() {
+        var int top;
         let top = x + 46;
-        let opening[0] = top;
-        let opening[1] = bottom;
-        return opening;
+        
+        return top;
+    }    
+    
+    method int getOpeningBottom() {
+        var int bottom;
+        let bottom = x - 46;
+        
+        return bottom;
     }
 
     method void dispose() {
         do Memory.deAlloc(this);
+        
         return;
     }
 }
