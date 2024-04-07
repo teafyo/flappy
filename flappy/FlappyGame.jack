@@ -41,6 +41,8 @@ class FlappyGame {
 		
 			//Update score if appropriate
 			let thisScore = Pipe1.getScore() + Pipe2.getScore() + Pipe3.getScore();
+			do moveCursor(1, 1);
+			do Output.printInt(thisScore);
 			if (thisScore > lastScore) {
 				do Output.moveCursor(34, 5);
 				do Output.printString("Score: ");	
