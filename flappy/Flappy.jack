@@ -33,7 +33,7 @@ class Flappy {
 	}
 	//flap function
 	method void flap() {
-		if (y > 12) { 
+		if (y > 30) { 
 			do Screen.setColor(false);
 			do Screen.drawCircle(x, y, r); // draw over the old circle
 			let y = y - speed;
