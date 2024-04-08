@@ -21,7 +21,7 @@ class Pipes {
 
     method void draw() {
         do Screen.setColor(true);
-        do Screen.drawRectangle(x, 8, (x + 20), (opening - 32));
+        do Screen.drawRectangle(x, 15, (x + 20), (opening - 32));
         do Screen.drawRectangle(x, (opening + 32), (x + 20), 255);   
     
         return;
@@ -29,7 +29,7 @@ class Pipes {
     }
     method void erase() {
         do Screen.setColor(false);
-        do Screen.drawRectangle(x, 8, (x + 20), (opening - 32));
+        do Screen.drawRectangle(x, 15, (x + 20), (opening - 32));
         do Screen.drawRectangle(x, (opening + 32), (x + 20), 255);
         
         return;
