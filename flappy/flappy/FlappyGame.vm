@@ -1,0 +1,217 @@
+function FlappyGame.new 0
+push constant 7
+call Memory.alloc 1
+pop pointer 0
+call Screen.clearScreen 0
+pop temp 0
+push constant 64
+push constant 128
+push constant 8
+push constant 4
+call Flappy.new 4
+pop this 0
+push constant 1
+neg
+pop this 2
+push constant 0
+pop this 1
+push constant 0
+not
+pop this 6
+push pointer 0
+return
+function FlappyGame.run 4
+push argument 0
+pop pointer 0
+push constant 2234
+call Random.setSeed 1
+pop temp 0
+push constant 160
+call Pipes.new 1
+pop local 1
+push constant 320
+call Pipes.new 1
+pop local 2
+push constant 480
+call Pipes.new 1
+pop local 3
+push constant 0
+pop this 3
+push constant 0
+pop this 4
+push constant 2
+pop this 5
+label WHILE_EXP0
+push this 6
+not
+if-goto WHILE_END0
+push constant 25
+call Sys.wait 1
+pop temp 0
+push local 1
+call Pipes.move 1
+pop temp 0
+push local 2
+call Pipes.move 1
+pop temp 0
+push local 3
+call Pipes.move 1
+pop temp 0
+push local 1
+call Pipes.getScore 1
+push local 2
+call Pipes.getScore 1
+add
+push local 3
+call Pipes.getScore 1
+add
+pop this 1
+push constant 1
+push constant 1
+call Output.moveCursor 2
+pop temp 0
+push constant 7
+call String.new 1
+push constant 83
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push this 1
+call Output.printInt 1
+pop temp 0
+push this 1
+push this 2
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 1
+pop this 2
+label IF_FALSE0
+call Keyboard.keyPressed 0
+pop local 0
+push local 0
+push constant 131
+eq
+push this 4
+push constant 0
+eq
+and
+push this 3
+push constant 1
+lt
+and
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 5
+pop this 3
+push constant 0
+pop this 5
+push constant 1
+pop this 4
+label IF_FALSE1
+push local 0
+push constant 131
+eq
+not
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 0
+pop this 4
+label IF_FALSE2
+push this 3
+push constant 0
+gt
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 0
+call Flappy.flap 1
+pop temp 0
+push this 3
+push constant 1
+sub
+pop this 3
+goto IF_END3
+label IF_FALSE3
+push this 0
+push this 5
+call Flappy.gravity 2
+pop temp 0
+push this 5
+push constant 6
+lt
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push this 5
+push constant 1
+add
+pop this 5
+label IF_FALSE4
+label IF_END3
+push this 0
+call Flappy.getY 1
+push constant 242
+gt
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push constant 0
+pop this 6
+label IF_FALSE5
+goto WHILE_EXP0
+label WHILE_END0
+push constant 10
+push constant 27
+call Output.moveCursor 2
+pop temp 0
+push constant 9
+call String.new 1
+push constant 71
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 109
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 79
+call String.appendChar 2
+push constant 118
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 0
+return
+function FlappyGame.dispose 0
+push argument 0
+pop pointer 0
+push this 0
+call Flappy.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return

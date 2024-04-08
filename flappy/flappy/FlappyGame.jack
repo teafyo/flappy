@@ -1,0 +1,89 @@
+class FlappyGame {
+	field Flappy flappy; //flappy
+	field int thisScore, lastScore; // score, increments whenever a pipe touches the left
+	field int flapBuffer; // buffers gravity for flap
+	field int flapRelease; // waits for the up arrow to be released before another flap
+	field int gravSpeed; // speed of gravity when not flapping
+	field boolean play; // controls game state, where true means the game is running
+	
+	constructor FlappyGame new() {
+		do Screen.clearScreen();
+		let flappy = Flappy.new(64, 128, 8, 4);
+		let lastScore = -1;
+		let thisScore = 0;
+		let play = true;
+		return this;
+	}
+
+	method void run() {
+		var char key;
+		var Pipes Pipe1, Pipe2, Pipe3;
+		//Arbitrary random start seed (for game to be truly random, this number would need to be randomly generated).
+		do Random.setSeed(2234);
+
+		//Initialize Pipes
+		let Pipe1 = Pipes.new(160);
+		let Pipe2 = Pipes.new(320);
+		let Pipe3 = Pipes.new(480);
+
+		let flapBuffer = 0;
+		let flapRelease = 0;
+		let gravSpeed = 2;
+		while (play){
+			do Sys.wait(25);
+			// move pipes
+			do Pipe1.move();
+			do Pipe2.move();
+			do Pipe3.move();
+
+			//Check for loss condition (does flappy touch a pipe?)
+			
+		
+			//Update score if appropriate
+			let thisScore = Pipe1.getScore() + Pipe2.getScore() + Pipe3.getScore();
+			do Output.moveCursor(1, 1);
+			do Output.printString("Score: ");	
+			do Output.printInt(thisScore);
+			if (thisScore > lastScore) {
+				let lastScore = thisScore;
+			}
+			let key = Keyboard.keyPressed();
+			
+			if ((key = 131) & (flapRelease = 0) & (flapBuffer < 1)) { //check if up arrow is pressed and has been released
+				let flapBuffer = 5;
+				let gravSpeed = 0;
+				let flapRelease = 1;
+			}
+			if (~(key = 131)) { //if up arrow released, set to 0
+				let flapRelease = 0;
+			}
+			if (flapBuffer > 0) {
+				do flappy.flap();
+				let flapBuffer = flapBuffer - 1;
+			}
+			else {
+				do flappy.gravity(gravSpeed);
+				if (gravSpeed < 6) {
+				let gravSpeed = gravSpeed + 1;
+				}
+			}
+			if ((flappy.getY() > 242 )) {
+				let play = false;
+			}
+		}
+        do Output.moveCursor(10,27); // Game over code from Pong game
+	    do Output.printString("Game Over");
+		//do Output.moveCursor(11,27);
+	    //do Output.printString("Score: ");
+		//do Output.moveCursor(11,34);
+	    //do Output.printInt(thisScore);
+		return;
+	}
+
+	method void dispose() {
+      do flappy.dispose();
+      do Memory.deAlloc(this);
+      return;
+   }
+}
+			
