@@ -31,6 +31,11 @@ class Flappy {
 	method int getY() {
 		return y;
 	}
+
+	method int getR() {
+		return r;
+	}
+	
 	//flap function
 	method void flap() {
 		if (y > 30) { 
