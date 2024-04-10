@@ -9,6 +9,7 @@ class FlappyGame {
 	field int speedCounter; //controls pipe speed increments
 	field int level; //level counter, indicated difficulty of the game
 	
+	//Make a new flappyGame
 	constructor FlappyGame new() {
 		do Screen.clearScreen();
 		let flappy = Flappy.new(16, 128, 8, 4);
@@ -46,31 +47,27 @@ class FlappyGame {
 
 			//Check for loss condition (does flappy touch a pipe?)
 			if (Pipe1.getX() = (flappy.getX() + flappy.getR())) {
-				if (flappy.getY() < Pipe1.getOpeningBottom()) {
+				if (flappy.getY() > Pipe1.getOpeningBottom()) {
 					let play = false;
-					do Output.moveCursor(1,2);
-					do Output.printInt(Pipe1.getOpeningBottom());
-					do Output.printInt(flappy.getY());
-					do Output.printString("Pipe1bottom");
 				}
-				if (flappy.getY() > Pipe1.getOpeningTop()) {
+				if (flappy.getY() < Pipe1.getOpeningTop()) {
 					let play = false;
-					do Output.moveCursor(2,2);
-					do Output.printString("Pipe1top");
 				}
 			}
 			if (Pipe2.getX() = (flappy.getX() + flappy.getR())) {
-				if (flappy.getY() < Pipe2.getOpeningBottom() | flappy.getY() > Pipe2.getOpeningTop()) {
+				if (flappy.getY() > Pipe2.getOpeningBottom()) {
 					let play = false;
-					do Output.moveCursor(1,2);
-					do Output.printString("Pipe2");
+				}
+				if (flappy.getY() < Pipe2.getOpeningTop()) {
+					let play = false;
 				}
 			}
 			if (Pipe3.getX() = (flappy.getX() + flappy.getR())) {
-				if (flappy.getY() < Pipe3.getOpeningBottom() | flappy.getY() > Pipe3.getOpeningTop()) {
+				if (flappy.getY() > Pipe3.getOpeningBottom()) {
 					let play = false;
-					do Output.moveCursor(1,2);
-					do Output.printString("Pipe3");
+				}
+				if (flappy.getY() < Pipe3.getOpeningTop()) {
+					let play = false;
 				}
 			}
 		
@@ -137,17 +134,13 @@ class FlappyGame {
 		while (loop) {
 			let key = Keyboard.keyPressed();
 			if (key = 89) {
-				do Output.moveCursor(5,5);
-				do Output.printString("y");
-				//let loop = false;
+				return true;
 			}
 			if (key = 78) {
-				//let loop = false;
-				do Output.moveCursor(5,5);
-				do Output.printString("n");
+				let loop = false;
 			}
 		}
-		return true;
+		return false;
    }
 }
 			
