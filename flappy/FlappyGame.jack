@@ -20,7 +20,7 @@ class FlappyGame {
 	method void run() {
 		var char key;
 		var Pipes Pipe1, Pipe2, Pipe3;
-teafyo/flappy/flappy/flappy		//Arbitrary random start seed (for game to be truly random, this number would need to be randomly generated).
+		//Arbitrary random start seed (for game to be truly random, this number would need to be randomly generated).
 		do Random.setSeed(2234);
 
 		//Initialize Pipes
