@@ -2,9 +2,14 @@
 class Main {
     function void main() {
         var FlappyGame game;
-        let game = FlappyGame.new();
-        do game.run();
-        do game.dispose();
+        var boolean play;
+        let play = true;
+        while (play) {
+            let game = FlappyGame.new();
+            do game.run();
+            let play = game.promptPlayAgain();
+            do game.dispose();
+        }
         return;
     }
 }
