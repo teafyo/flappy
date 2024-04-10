@@ -22,7 +22,9 @@ class Pipes {
 
     method void draw() {
         do Screen.setColor(true);
+        //draw top rectangle
         do Screen.drawRectangle(x, 15, (x + 20), (opening - 32));
+        //draw bottom rectangle
         do Screen.drawRectangle(x, (opening + 32), (x + 20), 255);   
     
         return;
@@ -30,7 +32,9 @@ class Pipes {
     }
     method void erase() {
         do Screen.setColor(false);
+        //erase top rectangle
         do Screen.drawRectangle(x, 15, (x + 20), (opening - 32));
+        //erase bottom rectangle
         do Screen.drawRectangle(x, (opening + 32), (x + 20), 255);
         
         return;
@@ -50,6 +54,7 @@ class Pipes {
     }
     method void increaseSpeed() {
         let speed = speed + 1;
+        
         return;
     }
     method int getScore() {
@@ -62,14 +67,14 @@ class Pipes {
     
     method int getOpeningTop() {
         var int top;
-        let top = opening + 46;
+        let top = opening - 32;
         
         return top;
     }    
     
     method int getOpeningBottom() {
         var int bottom;
-        let bottom =  - 46;
+        let bottom = opening + 32;
         
         return bottom;
     }
