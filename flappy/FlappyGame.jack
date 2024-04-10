@@ -20,7 +20,7 @@ class FlappyGame {
 	method void run() {
 		var char key;
 		var Pipes Pipe1, Pipe2, Pipe3;
-		//Arbitrary random start seed (for game to be truly random, this number would need to be randomly generated).
+teafyo/flappy/flappy/flappy		//Arbitrary random start seed (for game to be truly random, this number would need to be randomly generated).
 		do Random.setSeed(2234);
 
 		//Initialize Pipes
@@ -44,7 +44,21 @@ class FlappyGame {
 			do Pipe3.move();
 
 			//Check for loss condition (does flappy touch a pipe?)
-			
+			if Pipe1.getX() = flappy.getX() + flappy.getR() {
+				if flappy.getY() < Pipe1.getOpeningBottom() | if flappy.getY() > Pipe1.getOpeningTop() {
+					let play = false;
+				}
+			}
+			else if Pipe2.getX() = flappy.getX() + flappy.getR() {
+				if flappy.getY() < Pipe2.getOpeningBottom() | if flappy.getY() > Pipe2.getOpeningTop() {
+					let play = false;
+				}
+			}
+			else if Pipe3.getX() = flappy.getX() + flappy.getR() {
+				if flappy.getY() < Pipe3.getOpeningBottom() | if flappy.getY() > Pipe3.getOpeningTop() {
+					let play = false;
+				}
+			}
 		
 			//Update score if appropriate
 			let thisScore = Pipe1.getScore() + Pipe2.getScore() + Pipe3.getScore();
