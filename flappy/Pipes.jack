@@ -56,16 +56,20 @@ class Pipes {
         return score;
     }
 
+    method int getX() {
+        return x;
+    }
+    
     method int getOpeningTop() {
         var int top;
-        let top = x + 46;
+        let top = opening + 46;
         
         return top;
     }    
     
     method int getOpeningBottom() {
         var int bottom;
-        let bottom = x - 46;
+        let bottom =  - 46;
         
         return bottom;
     }
